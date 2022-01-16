@@ -10,12 +10,12 @@ import Categoria from "./Components/Categoria";
 function App() {
   return (
     <>
-    <Navb/>
+    {/* <Navb/> */}
     <Rutas />
     <br/>
     <br/>
     <br/>
-    <Footer />
+    {/* <Footer /> */}
     {/* <Categoria categoria = "Smoothies"/> */}
 
     </>

@@ -8,6 +8,8 @@ import Swal from 'sweetalert2';
 import "bootstrap/dist/css/bootstrap.min.css"
 import { Dropdown, DropdownItem, DropdownMenu, DropdowmToggle } from 'react-bootstrap'
 import { useEffect, useState } from 'react';
+import { getCategorias, getSabores} from "../../../functions/index.js";
+
 
 
 function Menu() {
@@ -23,7 +25,7 @@ function Menu() {
         //     confirmButtonColor: '#467a39',
         // })
         var cate = JSON.parse(localStorage.getItem('cat'));
-        console.log("categoria: ",cate);
+        console.log("categoria: ", cate);
     }
 
     const ChangeSabor = (x) =>{
@@ -36,13 +38,8 @@ function Menu() {
 
     useEffect(() => {
         const fetchData = async() => {
-            // const resCateg = await getCategorias();
-            const resCateg = ['unoC', 'dosC', 'tresC'];
+            const resCateg = await getCategorias();
             setCategoria(resCateg);
-
-            // const resSab = await getAllSabores();
-            const resSab = ['unoS', 'dosS', 'tresS'];
-            setSabor(resSab);
         };
         fetchData();
     }, []);
@@ -58,7 +55,7 @@ function Menu() {
             {/* ¿QUÉ TENEMOS? */}
             <Dropdown className="Options" >
                 <Dropdown.Toggle variant="success" id="dropdown-basic">
-                    ¿Qué tenemos?
+                    Lo que tenemos
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu >
@@ -67,35 +64,18 @@ function Menu() {
                             <Dropdown.Item onClick={(e) => 
                                 Swal.fire({
                                     position:'center', 
-                                    title:`${cat}`,
+                                    title: cat,
+                                    html:  `${getSabores(cat)}`,
                                     showConfirmButton: true,
                                     confirmButtonColor: '#467a39',
-                                     
-                                })}>{cat}</Dropdown.Item>
+                                })}>
+                                {cat}
+                            </Dropdown.Item>
                        )
                    })}
                 </Dropdown.Menu>
             </Dropdown>
 
-            {/* ¿ALGO ESPECÍFICO? */}
-            <br/><br/>
-            <Dropdown className="Options" >
-                <Dropdown.Toggle  variant="success" id="dropdown-basic"> 
-                    ¿Algo específico?
-                </Dropdown.Toggle>
-
-                <Dropdown.Menu className="Options" >
-                   {sabor && sabor.map((sab) =>{
-                       return(
-                             <Dropdown.Item onClick={(e) => 
-                                Swal.fire({ 
-                                    position:'center', 
-                                    title:`${sab}`  
-                                })}>{sab}</Dropdown.Item>
-                        )
-                   })}
-                </Dropdown.Menu>
-            </Dropdown>
             <br/><br/>
             <br/><br/>
         </Container>
