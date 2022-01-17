@@ -12,7 +12,6 @@ import { BrowserRouter as Router, Link } from "react-router-dom";
 import { useEffect, useState } from 'react';
 
 
-
 function Cont() {
 
     const menuChange = (x) =>{
@@ -29,7 +28,8 @@ function Cont() {
             position: 'center',
             html: '<h1>Misión</h1>\n<p>Un día lleno de trabajo requiere una alimentación deliciosa y nutritiva, pensada para iniciar el día con buena actitud.\nNuestra misión es otorgar alimentos prácticos que no distraen al comensal de aquello que más importa, la convivencia y el trabajo responsable. Creamos los distintos porductos Tree House para que sean alimentos ideales en reuniones empresariales y eventos.</p>\n\n  <h1>Visión</h1>\n<p>Tree House desea ofrecer alimentos frescos y naturales, cuya combinación de ingredientes formen un menú con variedad de alimentos en conjunto con snacks y bebidas; buscando lograr el equilibrio perfecto entre el disfrute del paladar y la nutrición del comensal, manteniendo siempre excelente calidad y servicio.</p>',
             showConfirmButton: true,
-            confirmButtonColor: '#467a39',
+            confirmButtonColor: '#A2D990',
+            color:'#467A39'
         })
         
     }

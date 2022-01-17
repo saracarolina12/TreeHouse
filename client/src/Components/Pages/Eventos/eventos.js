@@ -55,15 +55,15 @@ function Eventos() {
             title: "Evento registrado.",
             icon: "success",
             text: "Pronto nos pondremos en contacto",
-            confirmButtonText: "¡Entendide!",
+            confirmButtonText: "¡Entendido!",
           });
     }
     
     return (
         
-        <Container fluid className="container">
+        <Container fluid className="container" style={{marginTop:'3.5rem'}}>
             <i class="small material-icons left iconColor" onClick={backChange} >arrow_back</i>
-            <h1 className="TituloEventos">Eventos</h1>
+            <h1 className="TituloEventos" style={{backgroundColor:'#DFF8D5'}}>Eventos</h1>
             <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '65vh'}}>
                 <form className="col s12" onSubmit={onSubmitHandler}>
                     <h4>Contacto</h4>
@@ -94,7 +94,7 @@ function Eventos() {
                             </div>
                         </div>
                     </div>
-                    <button className="waves-effect waves-light btn" >
+                    <button className="waves-effect waves-light btn" style={{backgroundColor:'#DFF8D5'}}>
                             <i className="material-icons right">send</i>Solicitar
                     </button>
                 </form>
