@@ -44,36 +44,17 @@ app.get('/', function(requets, response){
 app.post('/event', function(request, response){
     console.log(request.body)
     const {nombre, nPersonas} = request.body;
-
-    // var sql = require("mssql");
-    // sql.connect(configsql, function(err){
-    //     if(err) console.log("Error 1:", err);
-    //     var querystring = `insert into Eventos (Nombre, NumeroPersonas) values ('${nombre}', ${nPersonas})`;
-    //     var result = new sql.Request();
-    //     result.query(querystring, function(err, recordset){
-    //         if(err) console.log("Falló", err);
-    //         else response.send(recordset);
-    //     })
-    // })
 });
 app.get('/sabores', function(request, response){
     const categoria = request.query.categoria;
     var cat = menu.get(categoria);
     console.log(categoria, cat.sabor);
-    console.log(menu.get(categoria).sabor.toString());
-    response.send(menu.get(categoria).sabor.toString());
-    // var sql = require("mssql");
-    // sql.connect(configsql, function(err){
-    //     if(err) console.log(err);
-    //     var querystring = `select Nombre from Sabor where IDCategoria = (select ID from Producto where Categoria = '${categoria}')`;
-    //     var result = new sql.Request();
-    //     result.query(querystring, function(err, recordset){
-    //         if(err) console.log(err);
-    //         response.send(recordset);
-    //     })
-    // })
+    response.send(cat.sabor);
+
 });
 app.get('/categorias', function(request,response){
     console.log("Entre", menu.keys());
-    response.send(Array.from(menu.keys()).sort(function(a, b){return b.length - a.length}));
+    var categories = Array.from(menu.keys()).sort(function(a, b){return b.length - a.length})
+    console.log(categories.map(c => [c, menu.get(c).tipo]));
+    response.send(categories.map(c => [c, menu.get(c).tipo]));
 });
