@@ -1,4 +1,5 @@
 import React from "react"
+import { render } from "react-dom";
 import Container from 'react-bootstrap/Container'
 import './menu.css';
 import Button from 'react-bootstrap/Button'
@@ -7,8 +8,12 @@ import M from 'materialize-css'
 import Swal from 'sweetalert2';
 import "bootstrap/dist/css/bootstrap.min.css"
 import { Dropdown, DropdownItem, DropdownMenu, DropdowmToggle, SplitButton, DropdownButton } from 'react-bootstrap'
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { getCategorias, getSabores} from "../../../functions/index.js";
+
+import Gallery from "react-photo-gallery";
+import SelectedImage from "./SelectedImage";
+import { photos } from "./photos";
 
 
 
@@ -27,6 +32,36 @@ function Menu() {
         };
         fetchData();
     }, []);
+
+
+
+    
+
+    const [selectAll, setSelectAll] = useState(false);
+
+    const toggleSelectAll = () => {
+      setSelectAll(!selectAll);
+    };
+  
+    const imageRenderer = useCallback(
+      ({ index, left, top, key, photo }) => (
+        <SelectedImage
+          selected={selectAll ? true : false}
+          key={key}
+          margin={"2px"}
+          index={index}
+          photo={photo}
+          left={left}
+          top={top}
+        />
+      ),
+      [selectAll]
+    );
+
+
+
+
+
     return (
 
         <Container fluid className="container">
@@ -82,6 +117,13 @@ function Menu() {
                         )
                         })}
                 </DropdownButton>   
+
+                <div>
+                    <p>
+                    <button onClick={toggleSelectAll}>toggle select all</button>
+                    </p>
+                    <Gallery photos={photos} renderImage={imageRenderer} />
+                </div>
 
         </Container>
     )
