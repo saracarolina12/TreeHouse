@@ -10,7 +10,8 @@ import Swal from 'sweetalert2';
 import Nav from 'react-bootstrap/Nav'
 import { BrowserRouter as Router, Link } from "react-router-dom";
 import { useEffect, useState } from 'react';
-
+import Card from 'react-bootstrap/Card'
+import Form from 'react-bootstrap/Form'
 
 function Cont() {
 
@@ -34,20 +35,77 @@ function Cont() {
         
     }
 
+    const current = new Date();
+    const [id, setID] = useState('');
+    const set = new Set();
+    let cont = 0;
+
+    function idChange(event) {
+        // console.log(event.target.value);
+        setID(event.target.value)
+    }
+
+    const getID = (x) =>{
+        console.log("visitas: ", JSON.parse(localStorage.getItem('IDvisits')));
+        if(!set.has(id)){
+            
+            console.log("no se ha usado", set, " cont: ", cont + 1);
+            localStorage.setItem('numVisitante', JSON.stringify(cont+1))
+            set.add(id);
+            if(JSON.parse(localStorage.getItem('numVisitante')) === 5 || JSON.parse(localStorage.getItem('numVisitante'))===100 || JSON.parse(localStorage.getItem('numVisitante'))===150){
+                var codigo = '';
+                for(let i=1; i<=6; i++) codigo += Math.round(Math.random()*10);
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    html: `<h3>¡Felicidades eres el visitante #${cont}!\nUtiliza el siguiente código para ganar una promoción:</h3>\n<h3 style='color:green'><i>${codigo}</i></h3>`,
+                    showConfirmButton: true,
+                    confirmButtonColor:'green'
+                })
+            }
+        }else{
+            console.log("ya se usó");
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                html: `<h5 style='color:red'><i>Ya has usado este ID el día de hoy!</i></h5>\n<h5 style='color:red'><i>Intenta mañana nuevamente</i></h5>`,
+                
+              })
+        }
+    }
+
+    useEffect(() => {
+        // console.log(current.getHours(), " ",current.getMinutes()," ", current.getSeconds());
+        if(current.getHours() === '24' && current.getMinutes() === '0' && current.getSeconds() === '0'){
+            cont = 0;
+            localStorage.setItem('numVisitante', JSON.stringify(0))
+        }
+      });
+
     return (
         
-        <Container fluid className="container">
-            {/* <br/> */}
+        <Container fluid className="container" > 
             <h1 className="Titulo">¡Bienvenid@!</h1>
             <br/><br/>
             <Button onClick={menuChange} className="menueventos" variant="success">Menú</Button>
             <br/><br/>
             <Button onClick={eventosChange} className="menueventos" variant="success">Eventos</Button>
-
-
             <i class="small material-icons right iconColor" onClick={iconChange} >info_outline</i>
 
-            <br/>
+            <h5 style={{color:'green'}}>¿Te gustaría ganar una promoción <br/> en nuestros productos?</h5>
+            <Card style={{ width: '18rem' , padding:'1.2rem'}}> 
+            <form>
+                <label style={{fontSize:'1.2rem', color:'green'}}><i>Ingresa tu ID para participar: </i></label>
+                <input onChange={idChange} onKeyPress={(event) => {
+                    if (!/[0-9]/.test(event.key)) {
+                        event.preventDefault();
+                    }
+                }} />
+            <Button style={{backgroundColor:'green'}} onClick={getID}>Participar!</Button>
+            </form>
+            </Card>
+
+            
         </Container>
     )
 }
