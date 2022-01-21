@@ -39,40 +39,62 @@ function Cont() {
     const [id, setID] = useState('');
     const set = new Set();
     let cont = 0;
+    // var miObjeto = { 'marcado': 'html5', 'estilo': 'css3', 'comportamiento': 'js' };
+
 
     function idChange(event) {
         // console.log(event.target.value);
         setID(event.target.value)
     }
 
+    function checkID(id){
+        var RESULTOFVALIDATING=[true, null], err="";
+        if(!id){
+            err += `\n<h5 style='color:red'><i>Primero ingresa un ID.</i></h5>`
+            RESULTOFVALIDATING[0] = false; RESULTOFVALIDATING[1] = err;
+        }
+        if(id.length != 7 && id){
+            err +=`\n<h5 style='color:red'><i>Este ID no existe</i></h5>`
+            RESULTOFVALIDATING[0] = false; RESULTOFVALIDATING[1] = err;
+        }
+        return RESULTOFVALIDATING;
+    }
+
     const getID = (x) =>{
-        console.log("visitas: ", JSON.parse(localStorage.getItem('IDvisits')));
-        if(!set.has(id)){
-            
-            console.log("no se ha usado", set, " cont: ", cont + 1);
-            localStorage.setItem('numVisitante', JSON.stringify(cont+1))
-            set.add(id);
-            if(JSON.parse(localStorage.getItem('numVisitante')) === 5 || JSON.parse(localStorage.getItem('numVisitante'))===100 || JSON.parse(localStorage.getItem('numVisitante'))===150){
-                var codigo = '';
-                for(let i=1; i<=6; i++) codigo += Math.round(Math.random()*10);
-                Swal.fire({
-                    position: 'top-end',
-                    icon: 'success',
-                    html: `<h3>¡Felicidades eres el visitante #${cont}!\nUtiliza el siguiente código para ganar una promoción:</h3>\n<h3 style='color:green'><i>${codigo}</i></h3>`,
-                    showConfirmButton: true,
-                    confirmButtonColor:'green'
-                })
-            }
-        }else{
-            console.log("ya se usó");
+        let validated = checkID(id);
+        if(validated[0] === false){
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
-                html: `<h5 style='color:red'><i>Ya has usado este ID el día de hoy!</i></h5>\n<h5 style='color:red'><i>Intenta mañana nuevamente</i></h5>`,
-                
-              })
+                html: `${validated[1]}`,  
+            })
+        }else{
+            if(!set.has(id)){ 
+                console.log("no se ha usado", set, " cont: ", cont + 1);
+                localStorage.setItem('numVisitante', JSON.stringify(cont+1))
+                set.add(id);
+                if(JSON.parse(localStorage.getItem('numVisitante')) === 50 || JSON.parse(localStorage.getItem('numVisitante'))===100 || JSON.parse(localStorage.getItem('numVisitante'))===150){
+                    var codigo = '';
+                    for(let i=1; i<=6; i++) codigo += Math.round(Math.random()*10);
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        html: `<h3>¡Felicidades eres el visitante #${cont}!\nUtiliza el siguiente código para ganar una promoción:</h3>\n<h3 style='color:green'><i>${codigo}</i></h3>`,
+                        showConfirmButton: true,
+                        confirmButtonColor:'green'
+                    })
+                }
+            }else{
+                console.log("ya se usó");
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    html: `<h5 style='color:red'><i>Ya has usado este ID el día de hoy!</i></h5>\n<h5 style='color:red'><i>Intenta mañana nuevamente</i></h5>`,
+                })
+            }
+          }
         }
-    }
+        
 
     useEffect(() => {
         // console.log(current.getHours(), " ",current.getMinutes()," ", current.getSeconds());
