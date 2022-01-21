@@ -19,7 +19,6 @@ import { photos } from "./photos";
 
 function Menu() {
     const [categoria, setCategoria] = useState();
-    const [sabor, setSabor] = useState();
 
     const backChange = (x) =>{
         window.location = "/";
@@ -34,19 +33,9 @@ function Menu() {
     }, []);
 
 
-
-    
-
-    const [selectAll, setSelectAll] = useState(false);
-
-    const toggleSelectAll = () => {
-      setSelectAll(!selectAll);
-    };
-  
     const imageRenderer = useCallback(
       ({ index, left, top, key, photo }) => (
         <SelectedImage
-          selected={selectAll ? true : false}
           key={key}
           margin={"2px"}
           index={index}
@@ -55,7 +44,7 @@ function Menu() {
           top={top}
         />
       ),
-      [selectAll]
+      []
     );
 
 
@@ -119,9 +108,6 @@ function Menu() {
                 </DropdownButton>   
 
                 <div>
-                    <p>
-                    <button onClick={toggleSelectAll}>toggle select all</button>
-                    </p>
                     <Gallery photos={photos} renderImage={imageRenderer} />
                 </div>
 

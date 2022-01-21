@@ -9,7 +9,7 @@
     justify-content: center;
     align-items: center;
     margin: auto;
-    
+
     /* padding: 40px 40px; */
     line-height: 20%;
     font-size: 200%;
@@ -24,7 +24,7 @@
     justify-content: center;
     align-items: center;
     margin: auto;
-    
+
     font-size: 410%;
     font-family: Titulo;
     color: #467a39;
@@ -50,4 +50,11 @@ i.material-icons {
 i.iconColor{
     color: #467a39;
     font-size: 300%;
+}
+
+#video {
+    position: fixed;
+    z-index: -1;
+    width: 75%;
+
 }

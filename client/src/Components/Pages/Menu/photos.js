@@ -1,48 +1,69 @@
 export const photos = [
     {
-      src: "https://source.unsplash.com/2ShvY8Lf6l0/800x599",
+      src: "https://i.ibb.co/LDyyxP3/fruit.jpg",
       width: 4,
-      height: 3
+      height: 3,
+      type: "Frutas"
     },
     {
-      src: "https://source.unsplash.com/Dm-qxdynoEc/800x799",
+      src: "https://i.ibb.co/vB5BWR6/ensalada.jpg",
+      width: 3,
+      height: 3,
+      type: "Salads"
+    },
+    {
+      src: "https://i.ibb.co/021NZN2/ciabatta.jpg",
+      width: 3,
+      height: 3,
+      type: "Ciabattas"
+    },
+    {
+      src: "https://i.ibb.co/KLNFDd7/baguette.jpg",
       width: 1,
-      height: 1
+      height: 1,
+      type: "Baguettes"
     },
     {
-      src: "https://source.unsplash.com/qDkso9nvCg0/600x799",
-      width: 3,
-      height: 4
-    },
-    {
-      src: "https://source.unsplash.com/iecJiKe_RNg/600x799",
-      width: 3,
-      height: 4
-    },
-    {
-      src: "https://source.unsplash.com/epcsn8Ed8kY/600x799",
-      width: 3,
-      height: 4
-    },
-    {
-      src: "https://source.unsplash.com/NQSWvyVRIJk/800x599",
+      src: "https://i.ibb.co/VBxDJt2/bagel.jpg",
       width: 4,
-      height: 3
+      height: 3,
+      type: "Bagels"
     },
     {
-      src: "https://source.unsplash.com/zh7GEuORbUw/600x799",
+      src: "https://i.ibb.co/cyqc4b9/2smoothie.jpg",
       width: 3,
-      height: 4
+      height: 4,
+      type: "Smoothies"
     },
     {
-      src: "https://source.unsplash.com/PpOHJezOalU/800x599",
+      src: "https://i.ibb.co/X8GfpFX/1sandwich.jpg",
       width: 4,
-      height: 3
+      height: 3,
+      type: "Sandwiches"
     },
     {
-      src: "https://source.unsplash.com/I1ASdgphUH4/800x599",
+      src: "https://i.ibb.co/VTVwxw3/1jugo.jpg",
       width: 4,
-      height: 3
+      height: 3,
+      type: "Jugos"
+    },
+    {
+      src: "https://i.ibb.co/KyS1hgv/torta.jpg",
+      width: 4,
+      height: 3,
+      type: "Tortas"
+    },
+    {
+      src: "https://i.ibb.co/RhkqMR5/panini.webp",
+      width: 4,
+      height: 3,
+      type: "Paninis"
+    },
+    {
+      src: "https://i.ibb.co/qrVFSg6/licuado.jpg",
+      width: 4,
+      height: 3,
+      type: "Licuados"
     }
   ];
   
