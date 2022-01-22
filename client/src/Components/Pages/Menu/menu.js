@@ -1,6 +1,7 @@
 import React from "react"
 import { render } from "react-dom";
 import Container from 'react-bootstrap/Container'
+import {Row, Col, ButtonGroup} from 'react-bootstrap'
 import './menu.css';
 import Button from 'react-bootstrap/Button'
 // import Logo from './Logo.png'
@@ -47,69 +48,79 @@ function Menu() {
       []
     );
 
-
-
-
-
     return (
 
         <Container fluid className="container">
-            <i class="small material-icons left iconColor" onClick={backChange} >arrow_back</i>
+            <Row className="align-items-center header" style={{backgroundColor:'#DFF8DF'}}>
+                <Col lg="auto">
+                    <i className="small material-icons left iconColor arrow" onClick={backChange} >arrow_back</i>
+                </Col>
+                <Col>
+                    <h1 className="TituloMenu">Menú</h1>
+                </Col>
+            </Row>
 
-            <br/><br/> 
-            <h1 className="TituloMenu">Menú</h1>
+            <br/><br/>
+                <Row className="align-items-center justify-content-md-center buttons">
+                    <Col>
+                        <center>
+                            <DropdownButton title="Comida" variant="success"  size="lg" >
+                                {categoria && categoria.map((cat) =>{
+                                    if(cat[1] === 'Comida')
+                                    return(
+                                        <Dropdown.Item onClick={async e => {
+                                            var flavors = await getSabores(cat[0]), list = "";
+                                            flavors.map(x => list += `<li>${x}<\li>`);
+                                            Swal.fire(
+                                                {
+                                                    position:'center',
+                                                    title: cat[0],
+                                                    html: '<ul>' + list + '</ul>',
+                                                    showConfirmButton: true,
+                                                    confirmButtonColor: '#467a39',
+                                                }
+                                                )
+                                            }}>
+                                                {cat[0]}
+                                            </Dropdown.Item>
+                                        )
+                                    })}
+                            </DropdownButton>
+                        </center>
+                    </Col>
+                    <Col>
+                        <center>
+                                <DropdownButton title="Bebida" variant="success" size="lg" >
+                                    {categoria && categoria.map((cat) =>{
+                                        if(cat[1] === 'Bebida')
+                                        return(
+                                            <Dropdown.Item onClick={async e => {
+                                                var flavors = await getSabores(cat[0]), list = "";
+                                                flavors.map(x => list += `<li>${x}<\li>`);
+                                                Swal.fire(
+                                                    {
+                                                        position:'center',
+                                                        title: cat[0],
+                                                        html: '<ul>' + list + '</ul>',
+                                                        showConfirmButton: true,
+                                                        confirmButtonColor: '#467a39',
+                                                    }
+                                                    )
+                                                }}>
+                                                    {cat[0]}
+                                                </Dropdown.Item>
+                                            )
+                                        })}
+                                </DropdownButton>   
+                            </center>
+                    </Col>
+                </Row>
+
             <br/><br/>
 
-            {/* ¿QUÉ TENEMOS? */}
-
-                <DropdownButton id="dropdown-basic-button" title="Comida" variant="success" style={{display : 'inline-block'}} size="lg" >
-                {categoria && categoria.map((cat) =>{
-                    if(cat[1] === 'Comida')
-                        return(
-                            <Dropdown.Item onClick={async e => {
-                                var flavors = await getSabores(cat[0]), list = "";
-                                flavors.map(x => list += `<li>${x}<\li>`);
-                                Swal.fire(
-                                    {
-                                        position:'center',
-                                        title: cat[0],
-                                        html: '<ul>' + list + '</ul>',
-                                        showConfirmButton: true,
-                                        confirmButtonColor: '#467a39',
-                                    }
-                                )
-                                }}>
-                                {cat[0]}
-                            </Dropdown.Item>
-                        )
-                        })}
-                </DropdownButton>
-                <DropdownButton id="dropdown-basic-button" title="Bebida" variant="success" style={{display : 'inline-block'}} size="lg" >
-                {categoria && categoria.map((cat) =>{
-                    if(cat[1] === 'Bebida')
-                        return(
-                            <Dropdown.Item onClick={async e => {
-                                var flavors = await getSabores(cat[0]), list = "";
-                                flavors.map(x => list += `<li>${x}<\li>`);
-                                Swal.fire(
-                                    {
-                                        position:'center',
-                                        title: cat[0],
-                                        html: '<ul>' + list + '</ul>',
-                                        showConfirmButton: true,
-                                        confirmButtonColor: '#467a39',
-                                    }
-                                )
-                                }}>
-                                {cat[0]}
-                            </Dropdown.Item>
-                        )
-                        })}
-                </DropdownButton>   
-
-                <div>
-                    <Gallery photos={photos} renderImage={imageRenderer} />
-                </div>
+            <div>
+                <Gallery photos={photos} renderImage={imageRenderer} />
+            </div>
 
         </Container>
     )

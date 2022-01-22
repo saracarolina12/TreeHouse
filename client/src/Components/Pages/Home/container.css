@@ -50,6 +50,7 @@ i.material-icons {
 i.iconColor{
     color: #467a39;
     font-size: 300%;
+    cursor: pointer;
 }
 
 #video {

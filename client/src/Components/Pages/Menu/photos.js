@@ -1,6 +1,30 @@
 export const photos = [
-    {
-      src: "https://i.ibb.co/LDyyxP3/fruit.jpg",
+  {
+    src: "https://i.ibb.co/cyqc4b9/2smoothie.jpg",
+    width: 3,
+    height: 4,
+    type: "Smoothies"
+  },
+  {
+    src: "https://i.ibb.co/LPy9D67/Agua.jpg",
+    width: 2,
+    height: 3,
+    type: "Aguas"
+  },
+  {
+    src: "https://i.ibb.co/VTVwxw3/1jugo.jpg",
+    width: 4,
+    height: 3,
+    type: "Jugos"
+  },
+  {
+    src: "https://i.ibb.co/qrVFSg6/licuado.jpg",
+    width: 4,
+    height: 3,
+    type: "Licuados"
+  },
+  {
+    src: "https://i.ibb.co/LDyyxP3/fruit.jpg",
       width: 4,
       height: 3,
       type: "Frutas"
@@ -30,22 +54,10 @@ export const photos = [
       type: "Bagels"
     },
     {
-      src: "https://i.ibb.co/cyqc4b9/2smoothie.jpg",
-      width: 3,
-      height: 4,
-      type: "Smoothies"
-    },
-    {
       src: "https://i.ibb.co/X8GfpFX/1sandwich.jpg",
       width: 4,
       height: 3,
       type: "Sandwiches"
-    },
-    {
-      src: "https://i.ibb.co/VTVwxw3/1jugo.jpg",
-      width: 4,
-      height: 3,
-      type: "Jugos"
     },
     {
       src: "https://i.ibb.co/KyS1hgv/torta.jpg",
@@ -60,10 +72,11 @@ export const photos = [
       type: "Paninis"
     },
     {
-      src: "https://i.ibb.co/qrVFSg6/licuado.jpg",
+      src: "https://i.ibb.co/44GmnX9/2cookie.jpg",
       width: 4,
       height: 3,
-      type: "Licuados"
-    }
+      type: "Galletas"
+    },
+
   ];
   

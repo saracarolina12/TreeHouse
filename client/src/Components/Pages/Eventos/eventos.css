@@ -3,6 +3,12 @@
     src: url(./titulo.otf);
 }
 
+.arrow{
+    cursor: pointer;
+}
+.header{
+    border-radius: 10px;
+}
 .TituloEventos{
     font-family: titulo;
     font-size: 500%;
@@ -11,7 +17,6 @@
     justify-content: center;
     align-items: center;
     margin: auto;
-    background-color: black;
     color:#467a39;
 
     

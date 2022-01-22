@@ -40,9 +40,27 @@ function Cont() {
         
         <Container fluid className="container">
             {/* <br/> */}
-            <video autoPlay loop muted id='video'>
+            <video autoPlay muted id='video'>
                 <source src={logo} type='video/mp4'/>
             </video>
+            <br/><br/>
+            <br/><br/>
+            <br/><br/>
+            <br/><br/>
+            <br/><br/>
+            <br/><br/>
+            <br/><br/>
+            <br/><br/>
+            <br/><br/>
+            <br/><br/>
+            <br/><br/>
+            <br/><br/>
+            <br/><br/>
+            <br/><br/>
+            <br/><br/>
+            <br/><br/>
+            <br/><br/>
+
             <h1 className="Titulo">¡Bienvenid@!</h1>
             <br/><br/>
             <Button onClick={menuChange} className="menueventos" variant="success">Menú</Button>
