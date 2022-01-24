@@ -37,43 +37,44 @@ function Cont() {
     }
 
     return (
-        
-        <Container fluid className="container">
-            {/* <br/> */}
-            <video autoPlay muted id='video'>
+        <div>
+            <video autoPlay muted id='video' >
                 <source src={logo} type='video/mp4'/>
             </video>
-            <br/><br/>
-            <br/><br/>
-            <br/><br/>
-            <br/><br/>
-            <br/><br/>
-            <br/><br/>
-            <br/><br/>
-            <br/><br/>
-            <br/><br/>
-            <br/><br/>
-            <br/><br/>
-            <br/><br/>
-            <br/><br/>
-            <br/><br/>
-            <br/><br/>
-            <br/><br/>
-            <br/><br/>
+            <Container fluid className="container">
+                <br/><br/>
+                <br/><br/>
+                <br/><br/>
+                <br/><br/>
+                <br/><br/>
+                <br/><br/>
+                <br/><br/>
+                
+                <br/><br/>
+                <br/><br/>
+                <br/><br/>
+                <br/><br/>
+                <br/><br/>
+                <br/><br/>
+                <br/><br/>
+                <br/><br/>
+                <br/><br/>
+                <br/><br/>
 
-            <h1 className="Titulo">¡Bienvenid@!</h1>
-            <br/><br/>
-            <Button onClick={menuChange} className="menueventos" variant="success">Menú</Button>
-            <br/><br/>
-            <Button onClick={eventosChange} className="menueventos" variant="success">Eventos</Button>
-            <br/><br/>
-            <br/><br/>
+                <h1 className="Titulo">¡Bienvenid@!</h1>
+                <br/><br/>
+                <Button onClick={menuChange} className="menueventos" variant="success">Menú</Button>
+                <br/><br/>
+                <Button onClick={eventosChange} className="menueventos" variant="success">Eventos</Button>
+                <br/><br/>
+                <br/><br/>
 
 
-            <i class="small material-icons right iconColor" onClick={iconChange} >info_outline</i>
-        
-            <br/>
-        </Container>
+                <i class="small material-icons right iconColor" onClick={iconChange} >info_outline</i>
+            
+                <br/>
+            </Container>
+        </div>
     )
 }
 
