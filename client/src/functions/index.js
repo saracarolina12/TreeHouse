@@ -27,3 +27,13 @@ export const getCategorias = async() => {
         console.log(error);
     }
 }
+
+export const postID = async(id) => {
+    try {
+        const resp = await api.postID(id);
+        return resp;
+    }
+    catch(err){
+        console.log(err);
+    }
+}

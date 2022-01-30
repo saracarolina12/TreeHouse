@@ -32,9 +32,6 @@ function Menu() {
         };
         fetchData();
     }, []);
-
-
-
     
 
     const [selectAll, setSelectAll] = useState(false);

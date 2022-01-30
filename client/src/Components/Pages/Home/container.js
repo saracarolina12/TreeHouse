@@ -12,6 +12,7 @@ import { BrowserRouter as Router, Link } from "react-router-dom";
 import { useEffect, useState } from 'react';
 import Card from 'react-bootstrap/Card'
 import Form from 'react-bootstrap/Form'
+import { postID } from "../../../functions";
 
 function Cont() {
 
@@ -35,11 +36,7 @@ function Cont() {
         
     }
 
-    const current = new Date();
     const [id, setID] = useState('');
-    const set = new Set();
-    let cont = 0;
-    // var miObjeto = { 'marcado': 'html5', 'estilo': 'css3', 'comportamiento': 'js' };
 
 
     function idChange(event) {
@@ -60,6 +57,8 @@ function Cont() {
         return RESULTOFVALIDATING;
     }
 
+    const [res, setRes] = useState('')
+    
     const getID = (x) =>{
         let validated = checkID(id);
         if(validated[0] === false){
@@ -69,40 +68,71 @@ function Cont() {
                 html: `${validated[1]}`,  
             })
         }else{
-            if(!set.has(id)){ 
-                console.log("no se ha usado", set, " cont: ", cont + 1);
-                localStorage.setItem('numVisitante', JSON.stringify(cont+1))
-                set.add(id);
-                if(JSON.parse(localStorage.getItem('numVisitante')) === 50 || JSON.parse(localStorage.getItem('numVisitante'))===100 || JSON.parse(localStorage.getItem('numVisitante'))===150){
+            const sendID = async() => {
+                const respuesta = await postID(id);
+                console.log("respo: ", respuesta);
+                if(respuesta.data === 'Usado'){
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        html: `<h5 style='color:red'><i>¡Ya has usado este ID el día de hoy!</i></h5>\n<h5 style='color:red'><i>Intenta mañana nuevamente</i></h5>`,
+                    })
+                }else if(respuesta.data === 'Registrado'){
+                    Swal.fire({
+                        icon: 'success',
+                        html: `<h3>Se ha registrado tu ID exitosamente para participar.</h3>\n<p>Sin embargo, no eres el visitante #50 :(</p><p>Intenta mañana nuevamente.</p>`,
+                        showConfirmButton: true,
+                        confirmButtonColor:'green'
+                    })
+                }else if(respuesta.data === 'Ganador'){
                     var codigo = '';
                     for(let i=1; i<=6; i++) codigo += Math.round(Math.random()*10);
                     Swal.fire({
                         position: 'top-end',
                         icon: 'success',
-                        html: `<h3>¡Felicidades eres el visitante #${cont}!\nUtiliza el siguiente código para ganar una promoción:</h3>\n<h3 style='color:green'><i>${codigo}</i></h3>`,
+                        html: `<h3>¡Felicidades eres el visitante #!\nUtiliza el siguiente código para ganar una promoción:</h3>\n<h3 style='color:green'><i>${codigo}</i></h3>`,
                         showConfirmButton: true,
                         confirmButtonColor:'green'
                     })
                 }
-            }else{
-                console.log("ya se usó");
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    html: `<h5 style='color:red'><i>Ya has usado este ID el día de hoy!</i></h5>\n<h5 style='color:red'><i>Intenta mañana nuevamente</i></h5>`,
-                })
-            }
+                return respuesta;
+            };
+            
+            console.log("sendID: ",sendID());
+            
+            // if(!set.has(id)){ 
+            //     // set.add(id);
+            //     setSet(prev => new Set(prev.add(id)))
+            //     if(localStorage.getItem('numVis') === 50 || localStorage.getItem('numVis')===100 || localStorage.getItem('numVis')===150){
+            //         var codigo = '';
+            //         for(let i=1; i<=6; i++) codigo += Math.round(Math.random()*10);
+            //         Swal.fire({
+            //             position: 'top-end',
+            //             icon: 'success',
+            //             html: `<h3>¡Felicidades eres el visitante #${cont}!\nUtiliza el siguiente código para ganar una promoción:</h3>\n<h3 style='color:green'><i>${codigo}</i></h3>`,
+            //             showConfirmButton: true,
+            //             confirmButtonColor:'green'
+            //         })
+            //     }
+            // }else{
+            //     console.log("ya se usó... ", set);
+            //     Swal.fire({
+            //         icon: 'error',
+            //         title: 'Oops...',
+            //         html: `<h5 style='color:red'><i>Ya has usado este ID el día de hoy!</i></h5>\n<h5 style='color:red'><i>Intenta mañana nuevamente</i></h5>`,
+            //     })
+            // }
           }
         }
         
 
-    useEffect(() => {
-        // console.log(current.getHours(), " ",current.getMinutes()," ", current.getSeconds());
-        if(current.getHours() === '24' && current.getMinutes() === '0' && current.getSeconds() === '0'){
-            cont = 0;
-            localStorage.setItem('numVisitante', JSON.stringify(0))
-        }
-      });
+    // useEffect(() => {
+    //     // console.log(current.getHours(), " ",current.getMinutes()," ", current.getSeconds());
+    //     if(current.getHours() === '24' && current.getMinutes() === '0' && current.getSeconds() === '0'){
+    //         cont = 0;
+    //         localStorage.setItem('numVisitante', JSON.stringify(0))
+    //     }
+    //   });
 
     return (
         
@@ -125,10 +155,8 @@ function Cont() {
                 }} />
             <Button style={{backgroundColor:'green'}} onClick={getID}>Participar!</Button>
             </form>
-            </Card>
-
-            
-        </Container>
+            </Card>         
+        </Container>        
     )
 }
 
