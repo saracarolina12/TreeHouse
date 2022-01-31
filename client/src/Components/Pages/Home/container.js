@@ -51,7 +51,7 @@ function Cont() {
     }
 
     return (
-        <div className="cont"> 
+        <div className="cont" > 
             <br></br>
             <br></br>
             <br></br>
@@ -97,7 +97,7 @@ function Cont() {
                         </div>
                     )}
                 >
-                    <div style={{ height: 750 }}>
+                    <div style={{ height: 620 }}>
                         <div style={insideStyles}>
                             <h1 className="Titulo">¡Bienvenid@!</h1>
                             <br/><br/>
