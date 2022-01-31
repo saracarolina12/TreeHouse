@@ -5,18 +5,6 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
-const configsql = {
-    user: 'TreeHouse',
-    password: 'THSL1221',
-    server: 'localhost',
-    database: 'TreeHouse' ,
-    options: {
-        trustedConnection: true,
-        encrypt: true,
-        enableArithAbort: true,
-        trustServerCertificate: true
-    }
-};
 const PORT = 8000;
 const menu = new Map([
     ['Smoothies',   {sabor: ['Fresa', 'Mango', 'Frutos rojos', 'Plátano', 'Sandía', 'Melón'], tipo: 'Bebida'}],
@@ -35,6 +23,7 @@ const menu = new Map([
     ['Bagels',	    {sabor: ['Queso Crema con frutos rojos', 'Crema de cacao', 'Crema de cacahuate', 'Jamón de pavo', 'Jamón de pierna', 'Pechuga de pollo', 'Pepperoni', 'Veggie'], tipo: 'Comida'}]
 ]);
 
+
 app.listen(PORT, () => {
     console.log(`Servidor iniciado en puerto ${PORT}`);
 });
@@ -49,8 +38,7 @@ app.get('/sabores', function(request, response){
     const categoria = request.query.categoria;
     var cat = menu.get(categoria);
     console.log(categoria, cat.sabor);
-    response.send(cat.sabor);
-
+    response.send(cat.sabor); 
 });
 app.get('/categorias', function(request,response){
     console.log("Entre", menu.keys());
@@ -58,3 +46,25 @@ app.get('/categorias', function(request,response){
     console.log(categories.map(c => [c, menu.get(c).tipo]));
     response.send(categories.map(c => [c, menu.get(c).tipo]));
 });
+
+var idSet = new Set();
+const time = new Date();
+app.post('/visitas', function(req, res){
+    const num = req.query.id; //num = cadena
+    if(time.getHours()==='24' && time.getMinutes()=='0' && time.getSeconds()=='0'){
+        idSet.clear();
+    }else{ //aún no es hora de resetear
+        if(idSet.has(num)){
+            res.send("Usado");
+            idSet.clear();
+        }
+        else{
+            idSet.add(num);
+            if(idSet.size % 5 === 0) res.send("Ganador");
+            else res.send("Registrado");
+            console.log(idSet.size);
+        }
+    }
+   
+    
+})

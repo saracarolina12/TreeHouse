@@ -32,8 +32,6 @@ function Menu() {
         };
         fetchData();
     }, []);
-
-
     const imageRenderer = useCallback(
       ({ index, left, top, key, photo }) => (
         <SelectedImage
