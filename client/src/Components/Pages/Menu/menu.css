@@ -21,8 +21,6 @@
     margin: auto;
 
     color:#467a39;
-;
-    
 }
 .Options{
     text-align: center;
@@ -30,5 +28,11 @@
     justify-content: center;
     align-items: center;
     margin: auto;
-
+}
+.buttons{
+    background-color: #DFF8DF;
+    width: 25vw;
+    height: 15vh;
+    margin: auto;
+    border-radius: 10px;
 }

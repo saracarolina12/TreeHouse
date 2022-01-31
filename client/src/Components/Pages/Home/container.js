@@ -13,8 +13,25 @@ import { useEffect, useState } from 'react';
 import Card from 'react-bootstrap/Card'
 import Form from 'react-bootstrap/Form'
 import { postID } from "../../../functions";
+import logo from './TreeHouse.mp4'
+import { Parallax, Background } from "react-parallax";
+
+  const insideStyles = {
+    // background: "white",
+    // padding: 20,
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%,-50%)"
+  };
+
 
 function Cont() {
+
+    const image4 = "https://images.fineartamerica.com/images/artworkimages/mediumlarge/1/empire-state-building-black-and-white-square-format-john-farnan.jpg";
+    const image = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJxbiScO3PX80CgzWk5uTYQS7BHAh9vOWJ2g&usqp=CAU";
+    const image1 = "https://cdn.pixabay.com/photo/2016/06/02/02/31/background-1430103_960_720.png";
+
 
     const menuChange = (x) =>{
         console.log("menuuu");
@@ -28,7 +45,8 @@ function Cont() {
     const iconChange = (x) =>{
         Swal.fire({
             position: 'center',
-            html: '<h1>Misión</h1>\n<p>Un día lleno de trabajo requiere una alimentación deliciosa y nutritiva, pensada para iniciar el día con buena actitud.\nNuestra misión es otorgar alimentos prácticos que no distraen al comensal de aquello que más importa, la convivencia y el trabajo responsable. Creamos los distintos porductos Tree House para que sean alimentos ideales en reuniones empresariales y eventos.</p>\n\n  <h1>Visión</h1>\n<p>Tree House desea ofrecer alimentos frescos y naturales, cuya combinación de ingredientes formen un menú con variedad de alimentos en conjunto con snacks y bebidas; buscando lograr el equilibrio perfecto entre el disfrute del paladar y la nutrición del comensal, manteniendo siempre excelente calidad y servicio.</p>',
+            title: 'Contáctanos',
+            html: '<ul><li>FB</li>IG<li></li>Phone<li></li></ul>',
             showConfirmButton: true,
             confirmButtonColor: '#A2D990',
             color:'#467A39'
@@ -135,28 +153,84 @@ function Cont() {
     //   });
 
     return (
-        
-        <Container fluid className="container" > 
-            <h1 className="Titulo">¡Bienvenid@!</h1>
-            <br/><br/>
-            <Button onClick={menuChange} className="menueventos" variant="success">Menú</Button>
-            <br/><br/>
-            <Button onClick={eventosChange} className="menueventos" variant="success">Eventos</Button>
-            <i class="small material-icons right iconColor" onClick={iconChange} >info_outline</i>
 
-            <h5 style={{color:'green'}}>¿Te gustaría ganar una promoción <br/> en nuestros productos?</h5>
-            <Card style={{ width: '18rem' , padding:'1.2rem'}}> 
-            <form>
-                <label style={{fontSize:'1.2rem', color:'green'}}><i>Ingresa tu ID para participar: </i></label>
-                <input onChange={idChange} onKeyPress={(event) => {
-                    if (!/[0-9]/.test(event.key)) {
-                        event.preventDefault();
-                    }
-                }} />
-            <Button style={{backgroundColor:'green'}} onClick={getID}>Participar!</Button>
-            </form>
-            </Card>         
-        </Container>        
+        <div className="cont" > 
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            {/* <Container fluid className="container"> */}
+
+                <Parallax
+                    bgImage={image1}
+                    strength={300}
+                    renderLayer={(percentage) => (
+                        <div>
+                            <video autoPlay muted id='video' style={{opacity: 1.2 - percentage}}>
+                                <source src={logo} type='video/mp4'/>
+                            </video>
+                            <div
+                                style={{
+                                    position: "absolute",
+                                    background: `rgba(235, 229, 210, ${percentage * 1})`,
+                                    left: "50%",
+                                    top: "50%",
+                                    borderRadius: "50%",
+                                    transform: "translate(-50%,-50%)",
+                                    width: percentage * 750,
+                                    height: percentage * 750
+                                }}
+                                />
+                        </div>
+                    )}
+                >
+                    <div style={{ height: 620 }}>
+                        <div style={insideStyles}>
+                            <h1 className="Titulo">¡Bienvenid@!</h1>
+                            <br/><br/>
+                            <Button onClick={menuChange} className="menueventos" variant="success">Menú</Button>
+                            <br/><br/>
+                            <Button onClick={eventosChange} className="menueventos" variant="success">Eventos</Button>
+                            <br/><br/>
+                            <br/><br/>
+                            <i class="small material-icons right iconColor" onClick={iconChange} >info_outline</i>
+                            
+                            <h5 style={{color:'green'}}>¿Te gustaría ganar una promoción <br/> en nuestros productos?</h5>
+                            <Card style={{ width: '18rem' , padding:'1.2rem'}}> 
+                              <form>
+                                  <label style={{fontSize:'1.2rem', color:'green'}}><i>Ingresa tu ID para participar: </i></label>
+                                  <input onChange={idChange} onKeyPress={(event) => {
+                                      if (!/[0-9]/.test(event.key)) {
+                                          event.preventDefault();
+                                      }
+                                  }} />
+                              <Button style={{backgroundColor:'green'}} onClick={getID}>Participar!</Button>
+                              </form>
+                            </Card>
+                            
+                        </div>
+                    </div>
+                </Parallax>
+            
+                <br/>
+            {/* </Container> */}
+        </div>
     )
 }
 

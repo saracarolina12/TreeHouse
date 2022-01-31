@@ -1,5 +1,5 @@
 import React from "react"
-import Container from 'react-bootstrap/Container'
+import {Container, Row, Col} from 'react-bootstrap'
 import './eventos.css';
 import "bootstrap/dist/css/bootstrap.min.css"
 import { useState } from "react";
@@ -61,9 +61,15 @@ function Eventos() {
     
     return (
         
-        <Container fluid className="container" style={{marginTop:'3.5rem'}}>
-            <i class="small material-icons left iconColor" onClick={backChange} >arrow_back</i>
-            <h1 className="TituloEventos" style={{backgroundColor:'#DFF8D5'}}>Eventos</h1>
+        <Container fluid className="container" >
+            <Row className="align-items-center header" style={{backgroundColor:'#DFF8DF'}}>
+                <Col lg="auto">
+                    <i className="small material-icons left iconColor arrow" onClick={backChange} >arrow_back</i>
+                </Col>
+                <Col>
+                    <h1 className="TituloEventos">Eventos</h1>
+                </Col>
+            </Row>
             <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '65vh'}}>
                 <form className="col s12" onSubmit={onSubmitHandler}>
                     <h4>Contacto</h4>
@@ -89,11 +95,11 @@ function Eventos() {
                         </div>
                         <div className="col s5">
                             <div className="input-field">
-                            <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
-
+                                <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
                             </div>
                         </div>
                     </div>
+                    <br></br>
                     <button className="waves-effect waves-light btn" style={{backgroundColor:'#DFF8D5'}}>
                             <i className="material-icons right">send</i>Solicitar
                     </button>

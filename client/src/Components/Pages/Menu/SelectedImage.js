@@ -1,29 +1,6 @@
 import { useState, useEffect } from "react";
-
-const Checkmark = ({ selected }) => (
-  <div
-    style={
-      selected
-        ? { left: "4px", top: "4px", position: "absolute", zIndex: "1" }
-        : { display: "none" }
-    }
-  >
-    <svg
-      style={{ fill: "white", position: "absolute" }}
-      width="24px"
-      height="24px"
-    >
-      <circle cx="12.5" cy="12.2" r="8.292" />
-    </svg>
-    <svg
-      style={{ fill: "#06befa", position: "absolute" }}
-      width="24px"
-      height="24px"
-    >
-      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
-    </svg>
-  </div>
-);
+import Swal from 'sweetalert2';
+import { getCategorias, getSabores} from "../../../functions/index.js";
 
 const imgStyle = {
   transition: "transform .135s cubic-bezier(0.0,0.0,0.2,1),opacity linear .15s"
@@ -60,7 +37,7 @@ const SelectedImage = ({
     cont.top = top;
   }
 
-  const handleOnClick = e => {
+  const toggleHover = e => {
     setIsSelected(!isSelected);
   };
 
@@ -73,14 +50,29 @@ const SelectedImage = ({
       style={{ margin, height: photo.height, width: photo.width, ...cont }}
       className={!isSelected ? "not-selected" : ""}
     >
-      <Checkmark selected={isSelected ? true : false} />
+      {/* <Checkmark selected={isSelected ? true : false} /> */}
       <img
         alt={photo.title}
         style={
           isSelected ? { ...imgStyle, ...selectedImgStyle } : { ...imgStyle }
         }
         {...photo}
-        onClick={handleOnClick}
+        onMouseEnter={toggleHover}
+        onMouseLeave={toggleHover}
+        onClick={async (e) => {
+          var alimento = e.target.attributes[3].value;
+          var flavors = await getSabores(alimento), list = "";
+          flavors.map(x => list += `<li>${x}<\li>`);
+          Swal.fire(
+              {
+                  position:'center',
+                  title: alimento,
+                  html: '<ul>' + list + '</ul>',
+                  showConfirmButton: true,
+                  confirmButtonColor: '#467a39',
+              }
+          )
+          }}
       />
       <style>{`.not-selected:hover{outline:2px solid #06befa}`}</style>
     </div>
