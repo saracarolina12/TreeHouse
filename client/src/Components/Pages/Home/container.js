@@ -92,13 +92,13 @@ function Cont() {
                 if(respuesta.data === 'Usado'){
                     Swal.fire({
                         icon: 'error',
-                        title: 'Oops...',
+                        title: 'Ooops...',
                         html: `<h5 style='color:red'><i>¡Ya has usado este ID el día de hoy!</i></h5>\n<h5 style='color:red'><i>Intenta mañana nuevamente</i></h5>`,
                     })
                 }else if(respuesta.data === 'Registrado'){
                     Swal.fire({
                         icon: 'success',
-                        html: `<h3>Se ha registrado tu ID exitosamente para participar.</h3>\n<p>Sin embargo, no eres el visitante #50 :(</p><p>Intenta mañana nuevamente.</p>`,
+                        html: `<h3>Se ha registrado tu ID</h3><br><p>Sin embargo, no eres el visitante #50</p><p>¡Intenta mañana nuevamente!</p>`,
                         showConfirmButton: true,
                         confirmButtonColor:'green'
                     })
@@ -210,20 +210,24 @@ function Cont() {
                             <br/><br/>
                             <br/><br/>
                             <i class="small material-icons right iconColor" onClick={iconChange} >info_outline</i>
-                            
-                            {/* <h5 style={{color:'green'}}>¿Te gustaría ganar una promoción <br/> en nuestros productos?</h5>
-                            <Card style={{ width: '18rem' , padding:'1.2rem'}}> 
-                              <form>
-                                  <label style={{fontSize:'1.2rem', color:'green'}}><i>Ingresa tu ID para participar: </i></label>
-                                  <input onChange={idChange} onKeyPress={(event) => {
-                                      if (!/[0-9]/.test(event.key)) {
-                                          event.preventDefault();
-                                      }
-                                  }} />
-                              <Button style={{backgroundColor:'green'}} onClick={getID}>Participar!</Button>
-                              </form>
-                            </Card> */}
-                            
+                            <div style={{
+                                position: "absolute",
+                                left: "175%",
+                                top: "70%"
+                            }}>
+                                <h5 style={{color:'green'}}>¡Participa por un regalo!</h5>
+                                <Card style={{ width: '18rem' , padding:'1.2rem'}}> 
+                                <form>
+                                    <label style={{fontSize:'1.2rem', color:'green'}}><i>Ingresa tu ID:</i></label>
+                                    <input onChange={idChange} onKeyPress={(event) => {
+                                        if (!/[0-9]/.test(event.key)) {
+                                            event.preventDefault();
+                                        }
+                                    }} />
+                                <Button style={{backgroundColor:'green'}} onClick={getID}>Participar</Button>
+                                </form>
+                                </Card>
+                            </div>
                         </div>
                     </div>
                 </Parallax>
