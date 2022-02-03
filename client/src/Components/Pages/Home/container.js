@@ -211,7 +211,7 @@ function Cont() {
                             <br/><br/>
                             <i class="small material-icons right iconColor" onClick={iconChange} >info_outline</i>
                             
-                            <h5 style={{color:'green'}}>¿Te gustaría ganar una promoción <br/> en nuestros productos?</h5>
+                            {/* <h5 style={{color:'green'}}>¿Te gustaría ganar una promoción <br/> en nuestros productos?</h5>
                             <Card style={{ width: '18rem' , padding:'1.2rem'}}> 
                               <form>
                                   <label style={{fontSize:'1.2rem', color:'green'}}><i>Ingresa tu ID para participar: </i></label>
@@ -222,7 +222,7 @@ function Cont() {
                                   }} />
                               <Button style={{backgroundColor:'green'}} onClick={getID}>Participar!</Button>
                               </form>
-                            </Card>
+                            </Card> */}
                             
                         </div>
                     </div>
