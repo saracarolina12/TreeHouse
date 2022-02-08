@@ -53,7 +53,8 @@ app.post('/visitas', function(req, res){
     const num = req.query.id; //num = cadena
     if(time.getHours()==='24' && time.getMinutes()=='0' && time.getSeconds()=='0'){
         idSet.clear();
-    }else{ //aún no es hora de resetear
+    }
+    else{ //aún no es hora de resetear
         if(idSet.has(num)){
             res.send("Usado");
             idSet.clear();
