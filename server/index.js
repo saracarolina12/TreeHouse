@@ -48,16 +48,19 @@ app.get('/categorias', function(request,response){
 });
 
 var idSet = new Set();
-const time = new Date();
+const lastTime = new Date();
 app.post('/visitas', function(req, res){
     const num = req.query.id; //num = cadena
-    if(time.getHours()==='24' && time.getMinutes()=='0' && time.getSeconds()=='0'){
+    const currentDate = new Date();
+    const diffYear = currentDate.getFullYear() != lastTime.getFullYear();
+    const diffMonth = currentDate.getMonth() != lastTime.getMonth();
+    const diffDay = currentDate.getDate() != lastTime.getDate();
+    if(diffYear || diffMonth || diffDay){
         idSet.clear();
     }
     else{ //aún no es hora de resetear
         if(idSet.has(num)){
             res.send("Usado");
-            idSet.clear();
         }
         else{
             idSet.add(num);
