@@ -57,6 +57,7 @@ app.post('/visitas', function(req, res){
     const diffDay = currentDate.getDate() != lastTime.getDate();
     if(diffYear || diffMonth || diffDay){
         idSet.clear();
+        lastTime = currentDate;
     }
     else{ //aún no es hora de resetear
         if(idSet.has(num)){

@@ -104,11 +104,10 @@ function Cont() {
                     })
                 }else if(respuesta.data === 'Ganador'){
                     var codigo = '';
-                    for(let i=1; i<=6; i++) codigo += Math.round(Math.random()*10);
                     Swal.fire({
                         position: 'top-end',
                         icon: 'success',
-                        html: `<h3>¡Felicidades eres el visitante #!\nUtiliza el siguiente código para ganar una promoción:</h3>\n<h3 style='color:green'><i>${codigo}</i></h3>`,
+                        html: `<h3>¡Felicidades eres el visitante ganador!</h3>Muestra este mensaje en la cafetería para obtener tu premio.`,
                         showConfirmButton: true,
                         confirmButtonColor:'green'
                     })
@@ -155,26 +154,7 @@ function Cont() {
     return (
 
         <div className="cont" > 
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
+            <div style={ { height: '500px' } }></div>
             {/* <Container fluid className="container"> */}
 
                 <Parallax
